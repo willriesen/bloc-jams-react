@@ -75,6 +75,7 @@ class Album extends Component {
                              <span className={this.thisSongIsPlaying(song) ? "ion-pause" : "invisible"}></span>
                          </button>
                      </td>
+                     <td className="song-number">{song.number}</td>
                      <td className="song-title">{song.title}</td>
                      <td className="song-duration">{song.duration}</td>
 
