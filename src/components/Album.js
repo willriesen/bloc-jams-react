@@ -42,7 +42,7 @@ class Album extends Component {
         if (!isSameSong) { this.setSong(song)}; }
         this.play();
       }
-    }
+    
 
     thisSongIsPlaying(song) {
       return this.state.currentSong === song && this.state.isPlaying;
