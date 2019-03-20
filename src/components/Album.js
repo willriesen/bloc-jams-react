@@ -1,86 +1,88 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-import PlayerBar from './PlayerBar'
+import PlayerBar from './PlayerBar';
 
 class Album extends Component {
    constructor(props) {
      super(props);
 
      const album = albumData.find( album => {
-       return album.slug === this.props.match.params.slug
+       return album.slug === this.props.match.params.slug;
      });
 
      this.state = {
        album: album,
        currentSong: album.songs[0],
-       isPlaying: false
+       isPlaying: false,
      };
    
      this.audioElement = document.createElement('audio');
      this.audioElement.src = album.songs[0].audioSrc;
     }
 
-    play() {
-      this.audioElement.play();
-      this.setState({ isPlaying: true });
+play() {
+    this.audioElement.play();
+    this.setState({ isPlaying: true });
     }
 
-    pause() {
-      this.audioElement.pause();
-      this.setState({ isPlaying: false });
+pause() {
+    this.audioElement.pause();
+    this.setState({ isPlaying: false });
     }
 
-    setSong(song) {
-      this.audioElement.src = song.audioSrc;
-      this.setState({ currentSong: song });
+setSong(song) {
+    this.audioElement.src = song.audioSrc;
+    this.setState({ currentSong: song });
     }
 
-    handleSongClick(song) {
-      const isSameSong = this.state.currentSong === song;
-      if (this.state.isPlaying && isSameSong) {
+handleSongClick(song) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
         this.pause();
-      } else {
-        if (!isSameSong) { this.setSong(song)}; }
+  } else {
+        if (!isSameSong) { this.setSong(song); }
         this.play();
       }
-    
-    handlePrevClick() {
-        const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-      const newIndex = Math.max(0, currentIndex - 1);
-      const newSong = this.state.album.songs[newIndex];
-      this.setSong(newSong);
-      this.play();
-      }
-    
-      handleNextClick () {
-        const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-        const newIndex = Math.min(this.state.album.songs.length - 1, currentIndex + 1);
-        const newSong = this.state.album.songs[newIndex];
-        this.setSong(newSong);
-        this.play(newSong);
-    
-      }
-    onHover(index) {
-        this.setState({ isHovered: index });
-    }
+  }
 
-    offHover() {
-        this.setState({ isHovered: false });
+handlePrevClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.max(0, currentIndex - 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play();
     }
+    
+handleNextClick () {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.min(this.state.album.songs.length - 1, currentIndex + 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play(newSong);
+    
+}
+    
+onHover(index) {
+    this.setState({ isHovered: index });
+}
 
-    hoverIcon(song, index) {
-        if (this.state.currentSong === song && this.state.isPlaying) {
-            return <span className="icon ion-md-pause" />;
-        } else if (this.state.isHovered === index) {
-            return <span className="icon ion-md-play" />;
-        } else {
-            return <span className="song-number">{index + 1}</span>;
+offHover() {
+    this.setState({ isHovered: false });
+}
+
+hoverIcon(song, index) {
+    if (this.state.currentSong === song && this.state.isPlaying) {
+        return <span className="icon ion-md-pause" />;
+  } else if (this.state.isHovered === index) {
+        return <span className="icon ion-md-play" />;
+  } else {
+        return <span className="song-number">{index + 1}</span>;
         }
     }
  
     
-  render() {
-    return (
+render() {
+  return (
       <section className="album">
         <section id="album-info">
            <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
