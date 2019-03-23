@@ -1,9 +1,11 @@
 import React from 'react';
+import img from './bloc-jams-lights2.jpg'
 
 const Landing = () => (
   <section className="landing">
-    <h1 className="hero-title">Turn the music up!</h1>
-    
+    <div className="lights">
+        <img src={img} alt="lights" />
+    </div>
     <section className="selling-points">
       <div className="point">
         <h2 className="point-title">Choose your music</h2>
