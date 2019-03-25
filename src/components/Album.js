@@ -152,7 +152,7 @@ render() {
                   <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.onHover(index)} onMouseLeave={() => this.offHover()}>
                       <td className="song-number">{this.hoverIcon(song, index)}</td>
                       <td className="song-title">{song.title}</td>
-                      <td className="song-duration">{song.duration}</td>
+                      <td className="song-duration">{this.formatTime(song.duration)} </td>
 
                   </tr>)}
            </tbody>
