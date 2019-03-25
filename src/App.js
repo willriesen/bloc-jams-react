@@ -11,9 +11,9 @@ class App extends Component {
       <div className="App">
         <header>
         <h1 className="Title">Bloc Jams</h1>
-          <h1 className="hero-title">Turn the music up!</h1>
+          
           <nav>
-            <Link to='/'>Landing</Link>
+            <Link to='/'>Home</Link>
             <Link to='/library'>Library</Link>
           </nav>
 
