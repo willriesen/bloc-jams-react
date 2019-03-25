@@ -3,9 +3,9 @@ import img from './bloc-jams-lights2.jpg'
 
 const Landing = () => (
   <section className="landing">
-    <div className="lights">
-        <img src={img} alt="lights" />
-    </div>
+  <div className="lights">
+            <img src={img} alt="lights" />
+        </div>
     <section className="selling-points">
       <div className="point">
         <h2 className="point-title">Choose your music</h2>
